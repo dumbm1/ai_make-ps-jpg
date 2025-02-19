@@ -1,0 +1,19 @@
+.footer {
+ /* display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;*/
+ display: grid;
+ grid-template-columns:  repeat(3, auto);
+ justify-content: start;
+ align-items: center;
+ gap: .5rem;
+ padding: .3rem 1.5rem .3rem .3rem;
+}
+
+.footer_j-s-start {
+ justify-self: start;
+}
+
+.footer_j-s-end {
+ justify-self: end;
+}

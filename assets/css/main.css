@@ -1,0 +1,19 @@
+@import "normalize.css";
+@import "fonts.css";
+@import "varColors.css";
+@import "../../components/page/page.css";
+@import "../../components/button/button.css";
+@import "../../components/icon/icon.css";
+@import "../../components/footer/footer.css";
+@import "../../components/container/container.css";
+@import "../../components/accordion/accordion.css";
+@import "../../components/number/number.css";
+@import "../../components/select/select.css";
+@import "../../components/range-slider/range-slider.css";
+
+
+body {
+ /*font-family: "Source Sans Pro", sans-serif;*/
+ font-family: "Tahoma", Sans-Serif;
+ overflow: hidden; /* for correct work fitPanelToContent() */
+}

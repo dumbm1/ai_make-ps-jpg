@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>select-2</title>
+		<style>
+
+         /*         html, body {
+				   height: 100%;
+				   margin: 0;
+				   padding: 0;
+				   box-sizing: border-box;
+				  }*/
+
+         .select {
+          position: relative;
+          height: 40px;
+          width: 100%;
+         }
+
+         .select__open {
+          position: absolute;
+         }
+
+         .select__elem {
+          position: absolute;
+          overflow-y: auto;
+          min-width: 60px;
+          outline: none;
+         }
+
+         .select__elem option {
+          padding-top: 3px;
+         }
+		</style>
+	</head>
+	<body>
+
+
+
+		<div class="select">
+
+			<select class="select__elem">
+				<option></option>
+				<option>one</option>
+				<option>two</option>
+				<option>three</option>
+				<option>four</option>
+				<option selected>five</option>
+				<option>six</option>
+				<option>seven</option>
+				<option>eight</option>
+				<option>nine</option>
+				<option>ten</option>
+			</select>
+
+			<button class="select__open">buttonOpen</button>
+
+		</div>
+
+		<h2>lalalalala</h2>
+		<p></p>
+
+		<script>
+         openSelect({
+                     elemTrigger: document.querySelector('.select__open'),
+                     elemSelect: document.querySelector('.select__elem'),
+                    });
+/**
+ *
+ * @param {HTMLElement} opts.elemTrigger - some element trigger to select open
+ * @param {HTMLElement} opts.elemSelect
+ * @return {HTMLElement} selected option
+ * */
+         function openSelect(opts) {
+          let elemTrigger = opts.elemTrigger;
+          let elemSelect = opts.elemSelect;
+          let attrSelectOpen = 'data-select-open';
+
+          document.addEventListener('click', (e) => {
+
+           if (e.target == elemTrigger) {
+            if (!elemSelect.hasAttribute(attrSelectOpen)) {
+             elemSelect.focus();
+             elemSelect.size = elemSelect.length;
+             elemSelect.setAttribute(attrSelectOpen, '');
+            } else {
+             elemSelect.size = 1;
+             elemSelect.removeAttribute(attrSelectOpen);
+            }
+           } else {
+            elemSelect.size = 1;
+            elemSelect.removeAttribute(attrSelectOpen);
+           }
+          });
+
+          document.addEventListener('keyup', (e) => {
+           if (e.code == 'Enter' && elemSelect.hasAttribute(attrSelectOpen) && (!event.ctrlKey && !event.metaKey)) {
+            elemSelect.size = 1;
+            elemSelect.removeAttribute(attrSelectOpen);
+            console.log(elemSelect.querySelectorAll('option')[elemSelect.selectedIndex].value);
+           }
+          });
+
+          return elemSelect.querySelectorAll('option')[elemSelect.selectedIndex];
+         }
+
+		</script>
+
+	</body>
+</html>

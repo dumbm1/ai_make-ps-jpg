@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<ExtensionList>
+    <Extension Id="makeOutDocs_panel">
+        <HostList>
+            <Host Name="ILST" Port="7771"/>
+        </HostList>
+    </Extension>
+</ExtensionList>
+<!--chrome:-->
+<!--http://localhost:7771-->
+ 

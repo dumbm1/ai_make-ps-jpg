@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>select</title>
+		<style>
+		 select {
+		  width: 20px;
+		 }
+			select::-webkit-scrollbar {
+             width: 0;
+            }
+		</style>
+	</head>
+	<body>
+		<button> Open select </button>
+      <select id="selector">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+      </select>
+
+
+		<script>
+         window.addEventListener('DOMContentLoaded', () => {
+          openSelect('button', '#selector')
+         })
+
+         const openSelect = (triggerSelector, selectSelector) => {
+          const trigger = document.querySelector(triggerSelector) // Достаем нужные елементы
+          const select = document.querySelector(selectSelector)
+          let selectSize = select.options.length // сохраняем первоначальное количество елементов в селекте
+          trigger.addEventListener('click', () => {
+           select.focus()
+           select.size = selectSize //по клику выставляем высоту селекта
+          })
+
+          select.addEventListener('blur', () => {
+           select.size = 1 // тут сбрасываем обратно
+          })
+         }
+		</script>
+	</body>
+</html>

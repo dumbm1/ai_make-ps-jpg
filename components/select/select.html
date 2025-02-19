@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>select</title>
+		<link rel="stylesheet" href="select.css">
+	</head>
+	<body>
+
+		<div class="container">
+			<input type="number" name="numb" id="numb">
+
+			<button id="open_select">V</button>
+
+			<div class="select">
+
+				<select class="select__elem">
+					<!--				<option class="select__option"></option>-->
+					<option class="select__option">one</option>
+					<option class="select__option">two</option>
+					<option class="select__option">three</option>
+					<option class="select__option">four</option>
+					<option class="select__option" selected>five</option>
+					<option class="select__option">six</option>
+					<option class="select__option">seven</option>
+					<option class="select__option">eight</option>
+					<option class="select__option">nine</option>
+					<option class="select__option">ten</option>
+				</select>
+
+			</div>
+		</div>
+		<h1 >
+			Регистр важен: "KeyZ", а не "keyZ"
+		</h1>
+		<p>
+			Выглядит очевидно, но многие всё равно ошибаются.
+
+			Пожалуйста, избегайте опечаток: правильно KeyZ, а не keyZ. Условие event.code=="keyZ" работать не будет:
+			первая буква в слове "Key" должна быть заглавная.
+		</p>
+
+		<script src="../../assets/js/openSelect.js"></script>
+		<script>
+         openSelect({
+                     elemTrigger: document.getElementById('open_select'),
+                     elemSelect: document.querySelector('.select__elem'),
+                    });
+		</script>
+	</body>
+</html>

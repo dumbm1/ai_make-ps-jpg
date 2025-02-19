@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>dropdown</title>
+		<link rel="stylesheet" href="dropdown.css">
+	</head>
+	<body>
+
+		<h1>Single select - with CSS reset</h1>
+		<form>
+			<input type="reset" class="reset" value="Clear it!">
+			<div class="__select" data-state="">
+				<div class="__select__title"></div>
+				<div class="__select__content">
+					<input id="singleSelect0" class="__select__input" type="radio" name="singleSelect" checked>
+					<label for="singleSelect0" tabindex="0" class="__select__label" data-value="Option 0"></label>
+
+					<input id="singleSelect1" class="__select__input" type="radio" name="singleSelect">
+					<label for="singleSelect1" tabindex="0" class="__select__label" data-value="Option 1"></label>
+
+					<input id="singleSelect2" class="__select__input" type="radio" name="singleSelect">
+					<label for="singleSelect2" tabindex="0" class="__select__label" data-value="Option 2"></label>
+
+					<input id="singleSelect3" class="__select__input" type="radio" name="singleSelect">
+					<label for="singleSelect3" tabindex="0" class="__select__label" data-value="Option 3"></label>
+
+					<input id="singleSelect4" class="__select__input" type="radio" name="singleSelect">
+					<label for="singleSelect4" tabindex="0" class="__select__label" data-value="Option 4"></label>
+
+					<input id="singleSelect5" class="__select__input" type="radio" name="singleSelect">
+					<label for="singleSelect5" tabindex="0" class="__select__label" data-value="Option 5"></label>
+
+					<input id="singleSelect6" class="__select__input" type="radio" name="singleSelect">
+					<label for="singleSelect6" tabindex="0" class="__select__label" data-value="Option 6"></label>
+
+					<input id="singleSelect7" class="__select__input" type="radio" name="singleSelect">
+					<label for="singleSelect7" tabindex="0" class="__select__label" data-value="Option 7"></label>
+
+					<input id="singleSelect8" class="__select__input" type="radio" name="singleSelect">
+					<label for="singleSelect8" tabindex="0" class="__select__label" data-value="Option 8"></label>
+				</div>
+			</div>
+		</form>
+
+		<script>
+         const selectSingle = document.querySelector('.__select');
+         const selectSingle_title = selectSingle.querySelector('.__select__title');
+         const selectSingle_labels = selectSingle.querySelectorAll('.__select__label');
+
+         // Toggle menu
+         selectSingle_title.addEventListener('click', () => {
+          if ('active' === selectSingle.getAttribute('data-state')) {
+           selectSingle.setAttribute('data-state', '');
+          } else {
+           selectSingle.setAttribute('data-state', 'active');
+          }
+         });
+
+         // Close when click to option
+         for (let i = 0; i < selectSingle_labels.length; i++) {
+          selectSingle_labels[i].addEventListener('click', (evt) => {
+           selectSingle_title.textContent = evt.target.textContent;
+           selectSingle.setAttribute('data-state', '');
+          });
+         }
+
+         // Reset title
+         // CSS do it!
+		</script>
+
+	</body>
+</html>

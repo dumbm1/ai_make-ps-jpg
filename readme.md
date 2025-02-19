@@ -1,0 +1,1 @@
+# HTML/CSS common components for Adobe Illustrator extension panel

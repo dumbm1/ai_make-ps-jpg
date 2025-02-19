@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>select-3</title>
+    </head>
+    <body>
+        <span class="firstlevel">button</span>
+        <select class="lastlevel">
+            <option>one</option>
+            <option>tho</option>
+            <option>three</option>
+        </select>
+
+        <script>
+          const span = document.querySelector('.firstlevel');
+          const select = document.querySelector('.lastlevel');
+
+          let toggleState = false;
+
+          function toggle() {
+            span.addEventListener('click', () => {
+
+              toggleState = !toggleState;
+              return toggleState ? (select.size = select.length) : (select.size = 1);
+            });
+          }
+
+          span.onclick = toggle;
+
+        </script>
+    </body>
+</html>
