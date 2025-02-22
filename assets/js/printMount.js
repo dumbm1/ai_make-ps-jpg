@@ -4,7 +4,16 @@ function printMount() {
  const printMountBtn = document.getElementById("print_mount");
  printMountBtn.addEventListener("click", e => {
   csInterface.evalScript(jsx_print.toString() + ';jsx_print();', function (result) {
-   alert('evalScript result: ' + result);
+   const infoStringSpan = document.querySelector('.footer__info-string-span');
+   if (result) {
+    let res = Math.round(result);
+    res = divideNumberByPieces(res, ' ');
+    infoStringSpan.innerText += 'ps-file size: ' + res + ' Kb\n';
+   } else {
+    infoStringSpan.innerText += 'result is: ' + result;
+   }
+
+   // alert('evalScript result: ' + result);
   });
  });
 }
@@ -25,42 +34,25 @@ function jsx_print() {
  jobPrintOpts.file = printFile;
  jobPrintOpts.printArea = PrintingBounds.ARTWORKBOUNDS;
 
-
-/* var CMOpts = new PrintColorManagementOptions();
- CMOpts.colorProfileMode = PrintColorProfile.PRINTERPROFILE;
- CMOpts.name = 'ColorMatch RGB';
- CMOpts.intent = PrintColorIntent.RELATIVECOLORIMETRIC;*/
-
-/* var fontOpts = new PrintFontOptions();
- fontOpts.downloadFonts = PrintFontDownloadMode.DOWNLOADSUBSET;
- fontOpts.fontSubstitution = FontSubstitutionPolicy.SUBSTITUTEOBLIQUE;*/
-
  var printOpts = new PrintOptions();
- // printOpts.jobOptions = jobPrintOpts;
- // printOpts.colorManagementOptions = CMOpts;
- // printOpts.fontOptions = fontOpts;
-
- /*printOpts.PPDName = ppdNames[0];
- printOpts.printerName = printerNames[0];
- printOpts.printPreset = printPresets[2];*/
-
-
  printOpts.printPreset = printPresets[0];
-/* printOpts.PPDName = ppdNames[0];
- printOpts.printerName = printerNames[1];*/
 
  printOpts.jobOptions = jobPrintOpts;
 
-
-
- try{
+ try {
   app.userInteractionLevel = UserInteractionLevel.DONTDISPLAYALERTS;
   ad.print(printOpts);
   userInteractionLevel = UserInteractionLevel.DISPLAYALERTS;
- } catch(e) {return e}
+ } catch (e) {
+  return e
+ }
 
  // printFile.execute();
 
- return +printFile.length/(1024*1024);
+ return +printFile.length / (1024 );
+}
+
+function divideNumberByPieces(x, delimiter) {
+ return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, delimiter || " ");
 }
 
