@@ -1,5 +1,5 @@
 const _printerList = ['Printer Adobe PDF', 'Printer Adobe PostScript File'];
-const _printPresetList = ['mount-preview', 'sep3', 'sep_pdf'];
+const _printPresetList = ['mount-preview'];
 
 makeMailJpg();
 

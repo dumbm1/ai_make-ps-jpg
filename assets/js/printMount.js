@@ -1,7 +1,7 @@
 printMount();
 
 function printMount() {
- const printMountBtn = document.getElementById("print_mount");
+ const printMountBtn = document.getElementById("make_mount_jpg");
  printMountBtn.addEventListener("click", e => {
   csInterface.evalScript(jsx_print.toString() + ';jsx_print();', function (result) {
    const infoStringSpan = document.querySelector('.footer__info-string-span');
