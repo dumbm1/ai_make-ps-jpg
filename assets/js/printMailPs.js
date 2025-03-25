@@ -1,9 +1,9 @@
-printMount();
+printMailPs();
 
-function printMount() {
- const printMountBtn = document.getElementById("make_mount_ps");
- printMountBtn.addEventListener("click", e => {
-  csInterface.evalScript(jsx_print_mount.toString() + ';jsx_print_mount();', function (result) {
+function printMailPs() {
+ const printMailPsBtn = document.getElementById("make_mail_ps");
+ printMailPsBtn.addEventListener("click", e => {
+  csInterface.evalScript(jsx_print_mail.toString() + ';jsx_print_mail();', function (result) {
    const infoStringSpan = document.querySelector('.footer__info-string-span');
    if (result) {
     let res = Math.round(result);
@@ -18,16 +18,24 @@ function printMount() {
  });
 }
 
-function jsx_print_mount() {
+function jsx_print_mail() {
  var printerNames = ['Printer Adobe PDF', 'Printer Adobe PostScript File'];
  var printPresets = ['mount-preview', 'sep_pdf'];
  var ppdNames = ['PPDFile Adobe PDF', 'PPDFile LaserGraver 4000'];
 
  var ad = activeDocument;
 
- var printFileName = ad.name.slice(4, -3);
- var printFolderPath = '/D/work/!_mount/' + printFileName;
- var printFile = new File(printFolderPath + '/mount_' + printFileName + '.ps');
+ /*
+    var baseMountPath = '/D/work/!_mount/' + new Date().getFullYear() + '/' + ('0' + (new Date().getMonth() + 1)).slice(-2);
+   var jpgFilePath = baseMountPath + '/' + baseFileName + '/mount_' + baseFileName + '.jpg';
+   var psFilePath = baseMountPath + '/' + baseFileName + '/mount_' + baseFileName + '.ps';
+   * */
+
+ // var printFolderPath = Folder.desktop + '/@/__test_print';
+
+ var printFileName = ad.name.slice(0, -3);
+ var printFolderPath = ad.path + '/jpg';
+ var printFile = new File(printFolderPath + '/' + printFileName + '.ps');
 
  if (!new Folder(printFolderPath).exists) new Folder(printFolderPath).create();
 
@@ -56,3 +64,4 @@ function jsx_print_mount() {
 function divideNumberByPieces(x, delimiter) {
  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, delimiter || " ");
 }
+

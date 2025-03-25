@@ -6,10 +6,10 @@ makeJpgFromPs();
 
 function makeJpgFromPs() {
  const makeJpgFromPs_btn = document.getElementById("make_jpg_from_ps");
- // console.log('да блять!!!');
+ console.log('да блять!!! кнопку взял');
 
  makeJpgFromPs_btn.addEventListener("click", e => {
-  // console.log("Make jpg from ps");
+  console.log("Make jpg from ps");
 
   // console.log(csInterface);
 
@@ -41,7 +41,7 @@ function _makeJpgFromPs() {
     fileName = fileName.slice(4);
     // alert('isOut, fileName: ' + fileName);
     try {
-     baseMountPath = '/D/work/!_mount/' + new Date().getFullYear() + '/' + ('0' + (new Date().getMonth() + 1)).slice(-2);
+     baseMountPath = '/D/work/!_mount/';
      jpgFilePath = baseMountPath + '/' + fileName + '/mount_' + fileName + '.jpg';
      jpgFilePath_w = baseMountPath + '/' + fileName + '/w_mount_' + fileName + '.jpg';
      psFilePath = baseMountPath + '/' + fileName + '/mount_' + fileName + '.ps';

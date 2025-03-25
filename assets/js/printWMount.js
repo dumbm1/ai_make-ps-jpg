@@ -1,9 +1,9 @@
-printMount();
+printWMount();
 
-function printMount() {
- const printMountBtn = document.getElementById("make_mount_ps");
- printMountBtn.addEventListener("click", e => {
-  csInterface.evalScript(jsx_print_mount.toString() + ';jsx_print_mount();', function (result) {
+function printWMount() {
+ const printWMountBtn = document.getElementById("make_w_mount_ps");
+ printWMountBtn.addEventListener("click", e => {
+  csInterface.evalScript(jsx_print_w_mount.toString() + ';jsx_print_w_mount();', function (result) {
    const infoStringSpan = document.querySelector('.footer__info-string-span');
    if (result) {
     let res = Math.round(result);
@@ -18,7 +18,7 @@ function printMount() {
  });
 }
 
-function jsx_print_mount() {
+function jsx_print_w_mount() {
  var printerNames = ['Printer Adobe PDF', 'Printer Adobe PostScript File'];
  var printPresets = ['mount-preview', 'sep_pdf'];
  var ppdNames = ['PPDFile Adobe PDF', 'PPDFile LaserGraver 4000'];
@@ -27,7 +27,7 @@ function jsx_print_mount() {
 
  var printFileName = ad.name.slice(4, -3);
  var printFolderPath = '/D/work/!_mount/' + printFileName;
- var printFile = new File(printFolderPath + '/mount_' + printFileName + '.ps');
+ var printFile = new File(printFolderPath + '/w_mount_' + printFileName + '.ps');
 
  if (!new Folder(printFolderPath).exists) new Folder(printFolderPath).create();
 
@@ -56,3 +56,4 @@ function jsx_print_mount() {
 function divideNumberByPieces(x, delimiter) {
  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, delimiter || " ");
 }
+
