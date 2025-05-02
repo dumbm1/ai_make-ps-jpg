@@ -25,17 +25,17 @@ function _makeJpgFromPs() {
   var ad = activeDocument;
   var filePath = ad.path;
   var fileName = (ad.name).slice(0, -3);
-  // alert('filePath: ' + filePath);
-  // alert('fileName: ' + fileName);
+  var JPG_MAX_FILE_SIZE_FACTOR = 5;
 
   var bt = new BridgeTalk();
   bt.target = __getLastOrRunningTarget('photoshop');
-  bt.body = __makeJpgFromPs.toString() + ';__makeJpgFromPs("' + filePath + '","' + fileName + '")';
+  bt.body = __makeJpgFromPs.toString() + ';__makeJpgFromPs("' + filePath + '","' + fileName + '", "' + JPG_MAX_FILE_SIZE_FACTOR + '")';
   bt.send();
 
-  function __makeJpgFromPs(filePath, fileName) {
+  function __makeJpgFromPs(filePath, fileName, JPG_MAX_FILE_SIZE_FACTOR) {
    var baseMountPath, jpgFilePath, jpgFilePath_w, psFilePath, psFilePath_w;
    var isOut = fileName.match(/^out_/);
+   var result = '', res1 = '', res2 = '';
 
    if (isOut) {
     fileName = fileName.slice(4);
@@ -66,8 +66,10 @@ function _makeJpgFromPs() {
    var psFile = new File(psFilePath);
    var psFile_w = new File(psFilePath_w);
    var jpgFileSize;
-   var JPG_MAX_FILE_SIZE = 5 * 1024 * 1024;
-   var JPG_MAX_FILE_SIZE_W = 2 * 1024 * 1024;
+   JPG_MAX_FILE_SIZE_FACTOR = +JPG_MAX_FILE_SIZE_FACTOR;
+   var JPG_MAX_FILE_SIZE_FACTOR_W = 1.5;
+   var JPG_MAX_FILE_SIZE = JPG_MAX_FILE_SIZE_FACTOR * 1024 * 1024;
+   var JPG_MAX_FILE_SIZE_W = JPG_MAX_FILE_SIZE_FACTOR_W * 1024 * 1024;
 
    var openOptsEps = new EPSOpenOptions();
    openOptsEps.antialias = true;
@@ -75,10 +77,21 @@ function _makeJpgFromPs() {
    openOptsEps.resolution = 300;
    openOptsEps.mode = OpenDocumentMode.RGB;
 
-   _saveJpg(psFile, jpgFilePath, JPG_MAX_FILE_SIZE);
-   _saveJpg(psFile_w, jpgFilePath_w, JPG_MAX_FILE_SIZE_W);
+   try {
+    res1 = 'jpg ' + _saveJpg(psFile, jpgFilePath, JPG_MAX_FILE_SIZE) + '. ';
+   } catch (e) {
+    res1 = '';
+   }
+   try {
+    res2 = 'w_jpg ' + _saveJpg(psFile_w, jpgFilePath_w, JPG_MAX_FILE_SIZE_W);
+   } catch (e) {
+    res2 = '';
+   }
+   result = res1 + res2;
 
    function _saveJpg(psFile, jpgFilePath, maxFileSize) {
+    if (!psFile.exists) throw new Error('psFile does not exist');
+
     app.open(psFile, openOptsEps);
 
     jpgFileSize = __saveJpg(jpgFilePath, jpgQuality);
@@ -95,7 +108,14 @@ function _makeJpgFromPs() {
     }
 
     app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
+    psFile.remove();
+    return '(' + formatTime(new Date()) + '): ' + Math.round(new File(jpgFilePath).length / 1024) + ' Mb';
    }
+
+   var bt2 = new BridgeTalk();
+   bt2.target = 'illustrator';
+   bt2.body = 'function f() {alert("' + result + '");} f();';
+   bt2.send();
 
    function __saveJpg(jpgFilePath, jpgQuality) {
     var jpgFile = new File(jpgFilePath);
@@ -108,6 +128,34 @@ function _makeJpgFromPs() {
     app.activeDocument.saveAs(jpgFile, saveOptsJpg, true, Extension.LOWERCASE);
     jpgFileSize = jpgFile.length;
     return jpgFileSize;
+   }
+
+   function formatDate(date) {
+    var d = date;
+    // форматировать дату, с учетом того, что месяцы начинаются с 0
+    d = [
+     '0' + d.getDate(),
+     '0' + (d.getMonth() + 1),
+     '' + d.getFullYear(),
+     '0' + d.getHours(),
+     '0' + d.getMinutes()
+    ];
+    for (var i = 0; i < d.length; i++) {
+     d[i] = d[i].slice(-2);
+    }
+    return d.slice(0, 3).join('.') + ' ' + d.slice(3).join(':');
+   }
+
+   function formatTime(date) {
+    var d = date;
+    d = [
+     '0' + d.getHours(),
+     '0' + d.getMinutes()
+    ];
+    for (var i = 0; i < d.length; i++) {
+     d[i] = d[i].slice(-2);
+    }
+    return d.slice(0, 2).join(':');
    }
   }
 

@@ -2,7 +2,7 @@
 <ExtensionManifest
         Version="11.0"
         ExtensionBundleId="makeOutDocs"
-        ExtensionBundleVersion="0.0.4"
+        ExtensionBundleVersion="0.0.5"
         ExtensionBundleName="makeOutputDocuments"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <Author>
@@ -19,7 +19,7 @@
     </Abstract>
 
     <ExtensionList>
-        <Extension Id="makeOutDocs_panel" Version="0.0.4"/>
+        <Extension Id="makeOutDocs_panel" Version="0.0.5"/>
     </ExtensionList>
 
     <ExecutionEnvironment>
@@ -52,20 +52,20 @@
                 </Lifecycle>
                 <UI>
                     <Type>Panel</Type>
-                    <Menu>make out docs 0.0.4</Menu>
+                    <Menu>make out docs 0.0.5</Menu>
                     <Geometry>
                         <Size>
                             <Width>224</Width>
-                            <Height>350</Height>
+                            <Height>500</Height>
                         </Size>
-                        <MinSize>
+                       <!-- <MinSize>
                             <Width>180</Width>
                             <Height>50</Height>
                         </MinSize>
                         <MaxSize>
                             <Width>800</Width>
                             <Height>1000</Height>
-                        </MaxSize>
+                        </MaxSize>-->
                     </Geometry>
                     <Icons>
                         <Icon Type="Normal">./assets/img/appIcon/icon_make-out-docs.png</Icon>

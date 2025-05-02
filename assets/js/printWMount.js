@@ -7,10 +7,10 @@ function printWMount() {
    const infoStringSpan = document.querySelector('.footer__info-string-span');
    if (result) {
     let res = Math.round(result);
-    res = divideNumberByPieces(res, ' ');
-    infoStringSpan.innerText += 'ps-file size: ' + res + ' Kb\n';
+    res = res = 'mount-W-ps (' + formatTime(new Date()) + '): ' + divideNumberByPieces(res, ' ') + ' Kb\n';
+    infoStringSpan.innerText += res;
    } else {
-    infoStringSpan.innerText += 'result is: ' + result;
+    infoStringSpan.innerText += 'error: ' + result;
    }
 
    // alert('evalScript result: ' + result);
@@ -55,5 +55,17 @@ function jsx_print_w_mount() {
 
 function divideNumberByPieces(x, delimiter) {
  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, delimiter || " ");
+}
+
+function formatTime(date) {
+ var d = date;
+ d = [
+  '0' + d.getHours(),
+  '0' + d.getMinutes()
+ ];
+ for (var i = 0; i < d.length; i++) {
+  d[i] = d[i].slice(-2);
+ }
+ return d.slice(0, 2).join(':');
 }
 
