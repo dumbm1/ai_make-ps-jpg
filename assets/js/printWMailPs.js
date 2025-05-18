@@ -25,6 +25,13 @@ function jsx_print_w_mail() {
 
  var ad = activeDocument;
 
+ try {
+  var txtLay = ad.layers.getByName('@_tt');
+  if (txtLay.visible) txtLay.visible = false;
+ } catch (e) {
+  // throw new Error('Layer @_tt does not exists');
+ }
+
  var printFileName = ad.name.slice(0, -3);
  var printFolderPath = ad.path + '/jpg';
  var printFile = new File(printFolderPath + '/' + printFileName + '_w' + '.ps');

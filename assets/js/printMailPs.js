@@ -25,6 +25,13 @@ function jsx_print_mail() {
 
  var ad = activeDocument;
 
+ try {
+  var txtLay = ad.layers.getByName('@_tt');
+  if (txtLay.visible) txtLay.visible = false;
+ } catch (e) {
+  // throw new Error('Layer @_tt does not exists');
+ }
+
  /*
     var baseMountPath = '/D/work/!_mount/' + new Date().getFullYear() + '/' + ('0' + (new Date().getMonth() + 1)).slice(-2);
    var jpgFilePath = baseMountPath + '/' + baseFileName + '/mount_' + baseFileName + '.jpg';
