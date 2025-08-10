@@ -13,24 +13,14 @@ function printWMailPs() {
     infoStringSpan.innerText += 'error: ' + result;
    }
 
-   // alert('evalScript result: ' + result);
   });
  });
 }
 
 function jsx_print_w_mail() {
- var printerNames = ['Printer Adobe PDF', 'Printer Adobe PostScript File'];
  var printPresets = ['mount-preview', 'sep_pdf'];
- var ppdNames = ['PPDFile Adobe PDF', 'PPDFile LaserGraver 4000'];
 
  var ad = activeDocument;
-
- try {
-  var txtLay = ad.layers.getByName('@_tt');
-  if (txtLay.visible) txtLay.visible = false;
- } catch (e) {
-  // throw new Error('Layer @_tt does not exists');
- }
 
  var printFileName = ad.name.slice(0, -3);
  var printFolderPath = ad.path + '/jpg';
@@ -73,4 +63,3 @@ function formatTime(date) {
  }
  return d.slice(0, 2).join(':');
 }
-

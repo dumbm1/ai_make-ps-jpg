@@ -13,15 +13,12 @@ function printWMount() {
     infoStringSpan.innerText += 'error: ' + result;
    }
 
-   // alert('evalScript result: ' + result);
   });
  });
 }
 
 function jsx_print_w_mount() {
- var printerNames = ['Printer Adobe PDF', 'Printer Adobe PostScript File'];
  var printPresets = ['mount-preview', 'sep_pdf'];
- var ppdNames = ['PPDFile Adobe PDF', 'PPDFile LaserGraver 4000'];
 
  var ad = activeDocument;
 
@@ -48,8 +45,6 @@ function jsx_print_w_mount() {
   return e
  }
 
- // printFile.execute();
-
  return +printFile.length / (1024);
 }
 
@@ -68,4 +63,3 @@ function formatTime(date) {
  }
  return d.slice(0, 2).join(':');
 }
-

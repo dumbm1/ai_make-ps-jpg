@@ -16,8 +16,10 @@
  <div class="page__section">
   <span>Mount ps</span>
   <div>
-   <button class="btn" id="make_mount_ps" style="background-color: cyan">mount ps</button>
-   <button class="btn" id="make_w_mount_ps" style="background-color: lightskyblue">w mount ps</button>
+   <button class="btn" id="make_mount_ps" data-action="make_mount_ps" style="background-color: cyan">mount ps</button>
+   <button class="btn" id="make_w_mount_ps" data-action="make_w_mount_ps" style="background-color: lightskyblue">w mount
+    ps
+   </button>
   </div>
   <div class="page__line-sep"></div>
  </div>
@@ -25,8 +27,9 @@
  <div class="page__section">
   <span>Mail ps</span>
   <div>
-   <button class="btn" id="make_mail_ps" style="background-color: coral">mail ps</button>
-   <button class="btn" id="make_w_mail_ps" style="background-color: coral">w mail ps</button>
+   <button class="btn" id="make_mail_ps" data-action="make_mail_ps" style="background-color: coral">mail ps</button>
+   <button class="btn" id="make_w_mail_ps" data-action="make_w_mail_ps" style="background-color: coral">w mail ps
+   </button>
   </div>
   <div class="page__line-sep"></div>
  </div>
@@ -34,7 +37,7 @@
  <div class="page__section">
   <span>Jpg</span>
   <div>
-   <button class="btn" id="make_jpg_from_ps" style="background-color: magenta">jpgs from ps</button>
+   <button class="btn" id="make_jpg_from_ps" data-action="make_jpg_from_ps" style="background-color: magenta">jpgs from ps</button>
   </div>
   <div class="page__line-sep"></div>
  </div>
@@ -51,7 +54,7 @@
   </div>
 
   <div class="footer__info-string"><h3>info</h3>
-  <span class="footer__info-string-span"></span>
+   <span class="footer__info-string-span"></span>
   </div>
  </footer>
 
@@ -63,13 +66,16 @@
 <script src="assets/js/fitPanelToContent.js"></script>
 <script src="assets/js/reloadPanel.js"></script>
 
-<script src="assets/js/printMount.js"></script>
+<script src="assets/js/makePsJpg.js"></script>
+
+<!--<script src="assets/js/printMount.js"></script>
 <script src="assets/js/printWMount.js"></script>
 
 <script src="assets/js/printMailPs.js"></script>
 <script src="assets/js/printWMailPs.js"></script>
 
 <script src="assets/js/makeJpgFromPs.js"></script>
+-->
 
 <script defer src="assets/js/main.js"></script>
 

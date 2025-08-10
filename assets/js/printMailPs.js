@@ -13,32 +13,14 @@ function printMailPs() {
     infoStringSpan.innerText += 'error: ' + result;
    }
 
-   // alert('evalScript result: ' + result);
   });
  });
 }
 
 function jsx_print_mail() {
- var printerNames = ['Printer Adobe PDF', 'Printer Adobe PostScript File'];
  var printPresets = ['mount-preview', 'sep_pdf'];
- var ppdNames = ['PPDFile Adobe PDF', 'PPDFile LaserGraver 4000'];
 
  var ad = activeDocument;
-
- try {
-  var txtLay = ad.layers.getByName('@_tt');
-  if (txtLay.visible) txtLay.visible = false;
- } catch (e) {
-  // throw new Error('Layer @_tt does not exists');
- }
-
- /*
-    var baseMountPath = '/D/work/!_mount/' + new Date().getFullYear() + '/' + ('0' + (new Date().getMonth() + 1)).slice(-2);
-   var jpgFilePath = baseMountPath + '/' + baseFileName + '/mount_' + baseFileName + '.jpg';
-   var psFilePath = baseMountPath + '/' + baseFileName + '/mount_' + baseFileName + '.ps';
-   * */
-
- // var printFolderPath = Folder.desktop + '/@/__test_print';
 
  var printFileName = ad.name.slice(0, -3);
  var printFolderPath = ad.path + '/jpg';
@@ -63,10 +45,7 @@ function jsx_print_mail() {
   return e
  }
 
- // printFile.execute();
-
  return +printFile.length / (1024);
-
 }
 
 function divideNumberByPieces(x, delimiter) {
@@ -84,6 +63,3 @@ function formatTime(date) {
  }
  return d.slice(0, 2).join(':');
 }
-
-
-
