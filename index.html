@@ -37,10 +37,25 @@
  <div class="page__section">
   <span>Jpg</span>
   <div>
-   <button class="btn" id="make_jpg_from_ps" data-action="make_jpg_from_ps" style="background-color: magenta">jpgs from ps</button>
+   <button class="btn" id="make_jpg_from_ps" data-action="make_jpg_from_ps" style="background-color: magenta">jpgs from
+    ps
+   </button>
   </div>
   <div class="page__line-sep"></div>
  </div>
+
+ <details class="output" open>
+  <summary class="output__title">
+   Console output
+  </summary>
+
+  <svg id="btn_clear_output" class="icon output__icon_clear">
+   <use href="assets/img/icons-sprite.svg#clear-output"></use>
+  </svg>
+
+  <textarea id="output_field" rows="5" class="hostTextarea output__field" disabled></textarea>
+
+ </details>
 
  <footer class="footer">
   <div class="footer__buttons-string">
@@ -53,9 +68,9 @@
    <button class="btn " id="reload_btn">Reload</button>
   </div>
 
-  <div class="footer__info-string"><h3>info</h3>
-   <span class="footer__info-string-span"></span>
-  </div>
+  <!--  <div class="footer__info-string"><h3>info</h3>
+     <span class="footer__info-string-span"></span>
+    </div>-->
  </footer>
 
 </div>

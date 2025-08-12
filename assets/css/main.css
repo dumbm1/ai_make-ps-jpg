@@ -10,6 +10,8 @@
 @import "../../components/number/number.css";
 @import "../../components/select/select.css";
 @import "../../components/range-slider/range-slider.css";
+@import "../../components/output/output.css";
+@import "../../components/icon/icon.css";
 
 
 body {

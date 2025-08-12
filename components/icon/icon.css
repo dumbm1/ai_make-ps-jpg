@@ -1,6 +1,18 @@
-.icon{
+/*.icon{
  width: 2rem;
  height: 2rem;
  color: var(--color-primary);
+}*/
+
+.icon {
+ height: 1.4rem;
+ width: 1.4rem;
 }
 
+.icon_button {
+ position: absolute;
+ top: 50%;
+ left: 0;
+ transform: translate(.2rem, -50%);
+ margin-right: 2rem;
+}
