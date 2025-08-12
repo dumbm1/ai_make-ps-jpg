@@ -9,50 +9,49 @@ function makePsJpg() {
 
    switch (action) {
     case 'make_mount_ps':
-
-
+     console.log(action);
      break
 
     case 'make_w_mount_ps':
-
+     console.log(action);
      break
 
     case 'make_mail_ps':
-
+     console.log(action);
      break
 
     case 'make_w_mail_ps':
-
+     console.log(action);
      break
 
     case 'make_jpg_from_ps':
-
+     console.log(action);
      break
 
     default:
+     console.log('Херня');
      break
    }
   }
  })
 
+ /*  const printMountBtn = document.getElementById("make_mount_ps");
+   printMountBtn.addEventListener("click", e => {
+    csInterface.evalScript(jsx_print_mount.toString() + ';jsx_print_mount();', function (result) {
+     const infoStringSpan = document.querySelector('.footer__info-string-span');
+     if (result) {
+      let res = Math.round(result);
+      res = res = 'mount-ps (' + formatTime(new Date()) + '): ' + divideNumberByPieces(res, ' ') + ' Kb\n';
+      infoStringSpan.innerText += res;
+     } else {
+      infoStringSpan.innerText += 'error: ' + result;
+     }
 
-/*  const printMountBtn = document.getElementById("make_mount_ps");
-  printMountBtn.addEventListener("click", e => {
-   csInterface.evalScript(jsx_print_mount.toString() + ';jsx_print_mount();', function (result) {
-    const infoStringSpan = document.querySelector('.footer__info-string-span');
-    if (result) {
-     let res = Math.round(result);
-     res = res = 'mount-ps (' + formatTime(new Date()) + '): ' + divideNumberByPieces(res, ' ') + ' Kb\n';
-     infoStringSpan.innerText += res;
-    } else {
-     infoStringSpan.innerText += 'error: ' + result;
-    }
-
-   });
-  });*/
+    });
+   });*/
 }
 
-function jsx_makePsJpg (printFileName, printFolderPath, printFile) {
+function jsx_makePsJpg(printFileName, printFolderPath, printFile) {
  var printPresets = ['mount-preview'];
 
  var ad = activeDocument;

@@ -20,10 +20,18 @@
 .footer__info-string {
  width: 100%;
 }
+/*
 .footer__buttons-string{
  display: grid;
- grid-template-columns:  30px 30px auto;
+ grid-template-columns:  30px 30px 30px auto;
  justify-content: stretch;
+ align-items: center
+}
+*/
+
+.footer__buttons-string{
+ display: flex;
+ justify-content: space-evenly;
  align-items: center
 }
 

@@ -45,7 +45,7 @@
  </div>
 
  <details class="output" open>
-  <summary class="output__title">
+  <summary class="output__title accordion__summary">
    Console output
   </summary>
 
@@ -65,7 +65,13 @@
    <svg class="icon">
     <use href="assets/img/serviceIcon/iconSprite.svg#tooltip"></use>
    </svg>
-   <button class="btn " id="reload_btn">Reload</button>
+   <svg class="icon">
+    <use href="assets/img/icons-sprite.svg#settings"></use>
+   </svg>
+   <svg class="icon" id="reload_btn">
+    <use href="assets/img/icons-sprite.svg#refresh"></use>
+   </svg>
+   <!--   <button class="btn " id="reload_btn">Reload</button>-->
   </div>
 
   <!--  <div class="footer__info-string"><h3>info</h3>
@@ -80,6 +86,7 @@
 <script src="assets/js/themeChanger.js"></script>
 <script src="assets/js/fitPanelToContent.js"></script>
 <script src="assets/js/reloadPanel.js"></script>
+<script src="assets/js/accordion.js"></script>
 
 <script src="assets/js/makePsJpg.js"></script>
 
@@ -93,6 +100,18 @@
 -->
 
 <script defer src="assets/js/main.js"></script>
+
+<!--<script>
+ output();
+
+ function output() {
+  let accordion = document.getElementsByClassName('output__title')[0];
+
+  accordion.addEventListener('click', target => {
+   fitPanelToContent();
+  })
+ }
+</script>-->
 
 </body>
 </html>
