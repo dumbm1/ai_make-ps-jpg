@@ -65,19 +65,65 @@
    <svg class="icon">
     <use href="assets/img/serviceIcon/iconSprite.svg#tooltip"></use>
    </svg>
-   <svg class="icon">
+   <svg class="icon" id="modal-open">
     <use href="assets/img/icons-sprite.svg#settings"></use>
    </svg>
    <svg class="icon" id="reload_btn">
     <use href="assets/img/icons-sprite.svg#refresh"></use>
    </svg>
-   <!--   <button class="btn " id="reload_btn">Reload</button>-->
+  </div>
+ </footer>
+
+ <div id="modal" class="modal">
+
+  <div class="modal__window">
+
+   <svg id="modal-close" class="modal__close">
+    <use href="assets/img/serviceIcon/iconSprite.svg#close"></use>
+   </svg>
+
+   <div class="modal__title">Настройки</div>
+
+   <div class="input" id="mount_input">
+    <div class="input__element">
+     <label class="input__label input__title">Путь для сохранения монтажей</label>
+
+     <div class="input__inner">
+<!--      <input type="text" class="input__text" placeholder="Placeholder">-->
+      <textarea rows="2" class="input__text hostTextarea" placeholder="Placeholder" ></textarea>
+      <button class="btn">Выбрать</button>
+      <svg class="input__icon input__icon_invalid">
+       <use href="../../assets/images/icons-sprite.svg#error"></use>
+      </svg>
+      <svg class="input__icon input__icon_success">
+       <use href="../../assets/images/icons-sprite.svg#success"></use>
+      </svg>
+     </div>
+    </div>
+
+   </div>
+   <div class="input" id="mail_jpg_input">
+    <div class="input__element">
+     <label class="input__label input__title">Путь для сохранения джипегов на согласование</label>
+
+     <div class="input__inner">
+      <!--      <input type="text" class="input__text" placeholder="Placeholder">-->
+      <textarea rows="2" class="input__text hostTextarea" placeholder="Placeholder" ></textarea>
+      <button class="btn">Выбрать</button>
+      <svg class="input__icon input__icon_invalid">
+       <use href="../../assets/images/icons-sprite.svg#error"></use>
+      </svg>
+      <svg class="input__icon input__icon_success">
+       <use href="../../assets/images/icons-sprite.svg#success"></use>
+      </svg>
+     </div>
+    </div>
+
+   </div>
+
   </div>
 
-  <!--  <div class="footer__info-string"><h3>info</h3>
-     <span class="footer__info-string-span"></span>
-    </div>-->
- </footer>
+ </div>
 
 </div>
 
@@ -90,28 +136,9 @@
 
 <script src="assets/js/makePsJpg.js"></script>
 
-<!--<script src="assets/js/printMount.js"></script>
-<script src="assets/js/printWMount.js"></script>
-
-<script src="assets/js/printMailPs.js"></script>
-<script src="assets/js/printWMailPs.js"></script>
-
-<script src="assets/js/makeJpgFromPs.js"></script>
--->
+<script src="components/modal/index.js"></script>
 
 <script defer src="assets/js/main.js"></script>
-
-<!--<script>
- output();
-
- function output() {
-  let accordion = document.getElementsByClassName('output__title')[0];
-
-  accordion.addEventListener('click', target => {
-   fitPanelToContent();
-  })
- }
-</script>-->
 
 </body>
 </html>

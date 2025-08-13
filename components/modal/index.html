@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- Страница с модалкой -->
+<html lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+		<link rel="stylesheet" href="./modal.css">
+		<link rel="stylesheet" href="../../03-lection1/01-button/button.css">
+
+		<title>Modal</title>
+	</head>
+	<body>
+
+		<div id="modal" class="modal">
+
+			<div class="modal__window">
+
+				<svg id="modal-close" class="modal__close">
+					<use href="../../assets/images/icons-sprite.svg#close"></use>
+				</svg>
+
+				<div class="modal__title">Внимание, внимание!</div>
+				<p class="modal__message">
+					Пользуйтесь EMMET для молниеносной верстки! Одной командой EMMET создает огромный кусок кода. Бонус:
+					напишите свои личные команды EMMET!
+				</p>
+				<p class="modal__message">
+					EMMET уже есть в IDE:
+				<ul>
+					<li>WebStorm,</li>
+					<li>PHPStorm,</li>
+					<li>IDEA.</li>
+				</ul>
+				Легко поставить в редакторы:
+				<ul>
+					<li>Sublime Text,</li>
+					<li>Notepad++,</li>
+					<li>и другие</li>
+				</ul>
+				А весь список программ вы найдете на сайте EMMET. Там и полное описание EMMET и короткая шпаргалка.
+				</p>
+			</div>
+
+		</div>
+
+		<button class="btn btn_view_primary" id="modal-open">Посмотреть, что там</button>
+
+	</body>
+	<script src="./index.js"></script>
+</html>

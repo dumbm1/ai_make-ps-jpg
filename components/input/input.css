@@ -1,0 +1,114 @@
+.input {
+ font-size: 1rem;
+ display: inline-flex;
+ gap: .4em;
+}
+
+.input_w100 {
+ width: 100%;
+}
+
+.input_preview {
+ font-size: .6rem;
+}
+
+.input__element {
+ width: 100%;
+}
+
+.input__label {
+ color: var(--grey-3);
+ font-family: Inter, sans-serif;
+ font-size: .75em;
+ font-style: normal;
+ font-weight: 500;
+ line-height: 1.5;
+ letter-spacing: 0.04em;
+ /*text-transform: uppercase;*/
+ margin: 0;
+}
+
+
+
+
+.input__title {
+ font-size: 1.1em;
+ display: block;
+}
+
+.input__inner {
+ position: relative;
+}
+
+.input__text {
+ font-size: 1.25em; /** !!! WARNING !!! - it's a base font for this element */
+ padding: .85em 2.25em .65em 1.2em;
+ color: var(--text-secondary);
+ font-family: Inter, sans-serif;
+ font-style: normal;
+ font-weight: 400;
+ line-height: 1.3;
+ border: 1px solid var(--grey-2);
+ border-radius: .4em;
+ box-sizing: border-box;
+ width: 100%;
+ background: var(--bg-primary);
+}
+
+.input__textarea {
+
+}
+
+.input__text::placeholder {
+ color: var(--color-alternate);
+ font-family: Inter, sans-serif;
+ font-size: 1em; /** !!! WARNING !!! - see the .input__text block rules */
+ font-style: normal;
+ font-weight: 400;
+ line-height: 1.3;
+ padding: 0;
+ margin: 0;
+}
+
+.input__icon {
+ height: 1.5em;
+ width: 1.5em;
+ position: absolute;
+ right: 1em;
+ top: 50%;
+ transform: translate(0, -50%);
+ display: none;
+}
+
+.input__text:focus {
+ outline: var(--blue) solid 1px;
+}
+
+.input_invalid .input__element .input__text {
+ outline: var(--error) solid 1px;
+ border: none
+}
+
+.input_invalid .input__element .input__icon_invalid {
+ display: block;
+ color: var(--error);
+}
+
+.input_success .input__element .input__icon_success {
+ display: block;
+ color: var(--success);
+}
+
+@media screen and (max-width: 768px) {
+ .input_preview {
+  font-size: .5em;
+ }
+
+ .input_preview .input__label {
+  font-size: .9em;
+ }
+
+ .input[data-preview-d-none] {
+  display: none;
+ }
+}

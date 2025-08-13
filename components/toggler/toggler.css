@@ -1,0 +1,115 @@
+/*lection-08-theme-changer*/
+
+.toggler {
+ display: inline-flex;
+ box-sizing: border-box;
+ pointer-events: none;
+}
+
+.toggler_d-block{
+ display: block;
+}
+
+.toggler__input {
+ opacity: 0;
+ position: absolute;
+ left: -100vw;
+}
+
+.toggler__wrapper {
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ gap: 12px;
+ justify-content: space-between;
+}
+
+.toggler__box {
+ box-sizing: border-box;
+ height: 28px;
+ width: 50px;
+ display: flex;
+ justify-content: flex-start;
+ align-items: center;
+ border-radius: 28px;
+ background-color: var(--bg-primary);
+ border: 1px solid var(--border-alternate);
+ padding-left: 1px;
+ pointer-events: all;
+ cursor: pointer;
+}
+
+.toggler__circle {
+ background-color: var(--color-secondary);
+ height: 24px;
+ width: 24px;
+ border-radius: 50%;
+ border: 1px solid var(--color-invert);
+ box-sizing: border-box;
+ transition: transform .3s ease-in;
+ box-sizing: border-box;
+}
+
+.toggler__title {
+ color: var(--title-alternate);
+ font-family: Inter, sans-serif;
+ font-size: 16px;
+ font-style: normal;
+ font-weight: 400;
+ line-height: 1.5;
+ cursor: pointer;
+ pointer-events: all;
+}
+
+.toggler__icon {
+ height: 24px;
+ width: 24px;
+ color: var(--color-secondary);
+ transition: color .3s ease-in-out;
+ pointer-events: all;
+ cursor: pointer;
+}
+
+.toggler__icon_theme-light {
+ color: var(--text-secondary);
+}
+
+.toggler__input:checked ~ .toggler__wrapper .toggler__box {
+ background-color: var(--accent-primary);
+ border: none;
+}
+
+.toggler__input:checked ~ .toggler__wrapper .toggler__circle {
+ border: 1px solid var(--accent-primary);
+ background-color: var(--white);
+ height: 24px;
+ width: 24px;
+ /*background-color: var(--bg-primary);*/
+ transform: translateX(23px);
+}
+
+.toggler__input:checked ~ .toggler__wrapper .toggler__icon_theme-dark {
+ color: var(--text-secondary);
+}
+
+.toggler__input:checked ~ .toggler__wrapper .toggler__icon_theme-light {
+ color: var(--color-secondary);
+}
+
+.toggler__input:disabled ~ .toggler__wrapper .toggler__circle {
+ background-color: var(--disabled-secondary);
+ border: 1px solid var(--disabled-secondary);
+}
+
+.toggler__input:disabled ~ .toggler__wrapper .toggler__box {
+ background-color: var(--color-alternate);
+ border: 1px solid var(--border-alternate);
+}
+
+.toggler__input:disabled ~ .toggler__wrapper .toggler__icon {
+ display: none;
+}
+
+.toggler__input:focus ~ .toggler__wrapper .toggler__title {
+ text-decoration: underline;
+}

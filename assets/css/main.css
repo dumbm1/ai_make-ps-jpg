@@ -12,6 +12,8 @@
 @import "../../components/range-slider/range-slider.css";
 @import "../../components/output/output.css";
 @import "../../components/icon/icon.css";
+@import "../../components/modal/modal.css";
+@import "../../components/input/input.css";
 
 
 body {
