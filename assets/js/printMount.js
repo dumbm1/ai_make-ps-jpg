@@ -26,7 +26,7 @@ function jsx_print_mount() {
  var ad = activeDocument;
 
  var printFileName = ad.name.slice(4, -3);
- var printFolderPath = '/C/work/!_mount/' + printFileName;
+ var printFolderPath = '/C/!_mount/' + printFileName;
  var printFile = new File(printFolderPath + '/mount_' + printFileName + '.ps');
 
  if (!new Folder(printFolderPath).exists) new Folder(printFolderPath).create();
