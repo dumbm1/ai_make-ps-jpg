@@ -41,7 +41,7 @@ function _makeJpgFromPs() {
     fileName = fileName.slice(4);
     // alert('isOut, fileName: ' + fileName);
     try {
-     baseMountPath = '/D/work/!_mount/';
+     baseMountPath = '/C/work/!_mount/';
      jpgFilePath = baseMountPath + '/' + fileName + '/mount_' + fileName + '.jpg';
      jpgFilePath_w = baseMountPath + '/' + fileName + '/w_mount_' + fileName + '.jpg';
      psFilePath = baseMountPath + '/' + fileName + '/mount_' + fileName + '.ps';

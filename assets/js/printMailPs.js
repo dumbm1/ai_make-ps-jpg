@@ -5,15 +5,18 @@ function printMailPs() {
  printMailPsBtn.addEventListener("click", e => {
   csInterface.evalScript(jsx_print_mail.toString() + ';jsx_print_mail();', function (result) {
    const infoStringSpan = document.querySelector('.footer__info-string-span');
-   if (result) {
-    let res = Math.round(result);
-    res = '@-ps (' + formatTime(new Date()) + '): ' + divideNumberByPieces(res, ' ') + ' Kb\n';
-    infoStringSpan.innerText += res;
-   } else {
-    infoStringSpan.innerText += 'error: ' + result;
-   }
 
-   // alert('evalScript result: ' + result);
+   if (!result) {
+    infoStringSpan.innerText += 'error: ' + result;
+    return;
+   }
+   if (result.match('Uncaught JavaScript exception')) {
+    infoStringSpan.innerText += '@-ps (' + formatTime(new Date()) + '): Error\n';
+    return;
+   }
+   let res = Math.round(result);
+   res = '@-ps (' + formatTime(new Date()) + '): ' + divideNumberByPieces(res, ' ') + ' Kb\n';
+   infoStringSpan.innerText += res;
   });
  });
 }
@@ -41,6 +44,12 @@ function jsx_print_mail() {
  // var printFolderPath = Folder.desktop + '/@/__test_print';
 
  var printFileName = ad.name.slice(0, -3);
+
+ if (printFileName.slice(0, 4) === 'out_') {
+  alert('Для принтовки выводного файла воспользуйтесь кнопкой "mount ps"');
+  throw new Error('Для принтовки выводного файла воспользуйтесь кнопкой "mount ps"');
+ }
+
  var printFolderPath = ad.path + '/jpg';
  var printFile = new File(printFolderPath + '/' + printFileName + '.ps');
 
