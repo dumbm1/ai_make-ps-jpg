@@ -29,10 +29,10 @@ function jsx_print_mail() {
  var ad = activeDocument;
 
  try {
-  var txtLay = ad.layers.getByName('@_tt');
+  var txtLay = ad.layers.getByName('@ tt');
   if (txtLay.visible) txtLay.visible = false;
  } catch (e) {
-  // throw new Error('Layer @_tt does not exists');
+  // throw new Error('Layer @ tt does not exists');
  }
 
  /*
@@ -69,7 +69,7 @@ function jsx_print_mail() {
   ad.print(printOpts);
   userInteractionLevel = UserInteractionLevel.DISPLAYALERTS;
  } catch (e) {
-  return e
+  return e;
  }
 
  // printFile.execute();
