@@ -6,6 +6,7 @@ makeSepViaIndd();
  * Нажать кнопку запуска скрипта
  *
  * Далее работает скрипт:
+ * todo: проверка слоев на соответствие стандарту
  * экшн копирует выделенное - это от 1 до 4 слоев (__test-lay__ copy, out lak copy, out w copy 2, out color copy)
  * растрируем out w:
   * if (lay.name != out w copy 2) lay.visible = false
