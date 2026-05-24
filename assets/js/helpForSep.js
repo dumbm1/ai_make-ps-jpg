@@ -49,7 +49,7 @@ function jsx_helpForSep() {
  var newLays;
  var actStr_cpSelLays = _mkActStr_cpSelLays();
 
- _mkAct(actStr_cpSelLays);
+ _runAction(actStr_cpSelLays);
 
  newLays = _getNewLays(originLaysNames);
 
@@ -87,9 +87,17 @@ function jsx_helpForSep() {
  }
 
  function _rasterizeNewLays(newLays) {
+
+  for (var i = 0; i < newLays.length; i++) {
+   var lay = newLays[i];
+   if (lay.locked == true) lay.locked = false;
+  }
+
+  executeMenuCommand('unlockAll');
+  executeMenuCommand('deselectall');
+
   var opts = new RasterizeOptions();
   opts.resolution = +prompt('Введите разрешение от 72 до 2400', '200');
-
 
   for (var i = 0; i < newLays.length; i++) {
    var lay = newLays[i];
@@ -97,7 +105,7 @@ function jsx_helpForSep() {
    executeMenuCommand('group');
    ad.rasterize(selection[0], undefined, opts);
   }
-   }
+ }
 
  function _hideOriginLays(lays, newLays) {
 
@@ -140,10 +148,15 @@ function jsx_helpForSep() {
    newLays.push(lay);
 
   }
+
+  if (!newLays.length) {
+   alert('Выделите слои и попробуйте еще раз');
+   throw new Error('Нужно выделить слои для сепараций');
+  }
   return newLays;
  }
 
- function _mkAct(str) {
+ function _runAction(str) {
   var f = new File('~/ScriptAction.aia');
   f.open('w');
   f.write(str);

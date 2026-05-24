@@ -9,8 +9,11 @@
 
 .page__section {
  box-sizing: border-box;
- padding: 0 .3rem;
+ /*padding: 0 .3rem;*/
  position: relative;
+ padding: .5rem;
+ border: 1px solid var(--border-secondary);
+ border-radius: .5rem;
 }
 
 .page__line-sep {

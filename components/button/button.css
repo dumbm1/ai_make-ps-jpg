@@ -2,12 +2,12 @@
  background: var(--button-primary);
  color: var(--color-primary);
  font-weight: 400;
- height: 2rem;
+ /*height: 2rem;*/
  cursor: pointer;
  transition: transform 200ms ease-in-out;
- border: 1px solid var(--border-primary);
- border-radius: .2rem;
- padding: 0 1.4rem;
+ border: 2px solid var(--border-primary);
+ border-radius: .5rem;
+ padding: .5rem 1rem;
  box-sizing: border-box;
 }
 
@@ -32,10 +32,11 @@
 
 .btn:hover {
  background: var(--button-hover);
+ border-color: var(--border-active);
 }
 
 .btn:active {
- /*transform: translateY(-1px);*/
+ transform: translateY(-1px);
  background: var(--bg-light-theme);
  border: 1px solid var(--border-primary);
  outline: none;
