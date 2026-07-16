@@ -98,9 +98,11 @@ function jsx_helpForSep() {
 
   var opts = new RasterizeOptions();
   opts.resolution = +prompt('Введите разрешение от 72 до 2400', '200');
+  opts.transparency = true;
 
   for (var i = 0; i < newLays.length; i++) {
    var lay = newLays[i];
+   executeMenuCommand('deselectall');
    lay.hasSelectedArtwork = true;
    executeMenuCommand('group');
    ad.rasterize(selection[0], undefined, opts);
