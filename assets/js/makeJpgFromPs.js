@@ -6,28 +6,31 @@ makeJpgFromPs();
 
 function makeJpgFromPs() {
  const makeJpgFromPs_btn = document.getElementById("make_jpg_from_ps");
+ const jpgSize = document.getElementById("jpg_size");
+ const w_jpgSize = document.getElementById("w_jpg_size");
 
  makeJpgFromPs_btn.addEventListener("click", e => {
 
-  csInterface.evalScript(_makeJpgFromPs.toString() + ';_makeJpgFromPs();', function (result) {
+  csInterface.evalScript(_makeJpgFromPs.toString() + ';_makeJpgFromPs("' + jpgSize + '","' + w_jpgSize + '")', function (result) {
 
   });
  });
 }
 
-function _makeJpgFromPs() {
+function _makeJpgFromPs(jpgSize, w_jpgSize) {
 
  var ad = activeDocument;
  var filePath = ad.path;
  var fileName = (ad.name).slice(0, -3);
- var JPG_MAX_FILE_SIZE_FACTOR = 5;
+ var jpgSize = jpgSize || 5;
+ var w_jpgSize = w_jpgSize || 1;
 
  var bt = new BridgeTalk();
  bt.target = __getLastOrRunningTarget('photoshop');
- bt.body = __makeJpgFromPs.toString() + ';__makeJpgFromPs("' + filePath + '","' + fileName + '", "' + JPG_MAX_FILE_SIZE_FACTOR + '")';
+ bt.body = __makeJpgFromPs.toString() + ';__makeJpgFromPs("' + filePath + '","' + fileName + '", "' + jpgSize + '","' + w_jpgSize + '")';
  bt.send();
 
- function __makeJpgFromPs(filePath, fileName, JPG_MAX_FILE_SIZE_FACTOR) {
+ function __makeJpgFromPs(filePath, fileName, jpgSize, w_jpgSize) {
   var baseMountPath, jpgFilePath, jpgFilePath_w, psFilePath, psFilePath_w;
   var isOut = fileName.match(/^out_/);
   var result = '', res1 = '', res2 = '';
@@ -61,10 +64,10 @@ function _makeJpgFromPs() {
   var psFile = new File(psFilePath);
   var psFile_w = new File(psFilePath_w);
   var jpgFileSize;
-  JPG_MAX_FILE_SIZE_FACTOR = +JPG_MAX_FILE_SIZE_FACTOR;
-  var JPG_MAX_FILE_SIZE_FACTOR_W = 1.5;
-  var JPG_MAX_FILE_SIZE = JPG_MAX_FILE_SIZE_FACTOR * 1024 * 1024;
-  var JPG_MAX_FILE_SIZE_W = JPG_MAX_FILE_SIZE_FACTOR_W * 1024 * 1024;
+  var jpgSize = +jpgSize || 5;
+  var w_jgpSize = +w_jpgSize || 1;
+  jpgSize = jpgSize * 1024 * 1024;
+  w_jpgSize = w_jgpSize * 1024 * 1024;
 
   var openOptsEps = new EPSOpenOptions();
   openOptsEps.antialias = true;
@@ -73,12 +76,12 @@ function _makeJpgFromPs() {
   openOptsEps.mode = OpenDocumentMode.RGB;
 
   try {
-   res1 = 'jpg ' + _saveJpg(psFile, jpgFilePath, JPG_MAX_FILE_SIZE) + '. ';
+   res1 = 'jpg ' + _saveJpg(psFile, jpgFilePath, jpgSize) + '. ';
   } catch (e) {
    res1 = '';
   }
   try {
-   res2 = 'w_jpg ' + _saveJpg(psFile_w, jpgFilePath_w, JPG_MAX_FILE_SIZE_W);
+   res2 = 'w_jpg ' + _saveJpg(psFile_w, jpgFilePath_w, w_jpgSize);
   } catch (e) {
    res2 = '';
   }

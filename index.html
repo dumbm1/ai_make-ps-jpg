@@ -16,37 +16,45 @@
  <fieldset class="page__section">
   <legend>PS ДЛЯ СОГЛАСОВАНИЯ</legend>
   <div>
-   <button class="btn" id="make_mail_ps" >@-ps общий</button>
-   <button class="btn" id="make_w_mail_ps" >@-ps белая</button>
+   <button class="btn" id="make_mail_ps">@-ps общий</button>
+   <button class="btn" id="make_w_mail_ps">@-ps белая</button>
   </div>
-<!--  <div class="page__line-sep"></div>-->
+  <!--  <div class="page__line-sep"></div>-->
  </fieldset>
 
  <fieldset class="page__section">
   <legend>PS ДЛЯ МОНТАЖА</legend>
   <div>
-   <button class="btn" id="make_mount_ps" >mount-ps общий</button>
-   <button class="btn" id="make_w_mount_ps" >mount-ps белая</button>
+   <button class="btn" id="make_mount_ps">mount-ps общий</button>
+   <button class="btn" id="make_w_mount_ps">mount-ps белая</button>
   </div>
-<!--  <div class="page__line-sep"></div>-->
+  <!--  <div class="page__line-sep"></div>-->
  </fieldset>
-
-
 
  <fieldset class="page__section">
   <legend>ГЕНЕРАЦИЯ ДЖИПЕГОВ ИЗ PS</legend>
   <div>
-   <button class="btn" id="make_jpg_from_ps" >Сгенерировать джипеги</button>
+   <button class="btn" id="make_jpg_from_ps">Сгенерировать джипеги</button>
   </div>
-<!--  <div class="page__line-sep"></div>-->
+  <div class="number">
+   <label for="jpg_size">Размер общего</label>
+   <input class="number__input" id="jpg_size" type="number" max="10" min="0.5" step="0.5" value="5">
+   <label for="jpg_size">Мб</label>
+  </div>
+  <div class="number">
+   <label for="w_jpg_size">Размер белого</label>
+   <input class="number__input" id="w_jpg_size" type="number" max="10" min="0.5" step="0.5" value="1">
+   <label for="w_jpg_size">Мб</label>
+  </div>
+  <!--  <div class="page__line-sep"></div>-->
  </fieldset>
 
  <fieldset class="page__section">
   <legend>ПОМОЩНИК СЕПАРАЦИЙ</legend>
-    <div>
+  <div>
    <button class="btn" id="make_sep">Сделать сепарации</button>
   </div>
-<!--  <div class="page__line-sep"></div>-->
+  <!--  <div class="page__line-sep"></div>-->
  </fieldset>
 
  <footer class="footer">
