@@ -6,8 +6,8 @@ makeJpgFromPs();
 
 function makeJpgFromPs() {
  const makeJpgFromPs_btn = document.getElementById("make_jpg_from_ps");
- const jpgSize = document.getElementById("jpg_size");
- const w_jpgSize = document.getElementById("w_jpg_size");
+ const jpgSize = document.getElementById("jpg_size").value;
+ const w_jpgSize = document.getElementById("w_jpg_size").value;
 
  makeJpgFromPs_btn.addEventListener("click", e => {
 
@@ -64,10 +64,10 @@ function _makeJpgFromPs(jpgSize, w_jpgSize) {
   var psFile = new File(psFilePath);
   var psFile_w = new File(psFilePath_w);
   var jpgFileSize;
-  var jpgSize = +jpgSize || 5;
-  var w_jgpSize = +w_jpgSize || 1;
-  jpgSize = jpgSize * 1024 * 1024;
-  w_jpgSize = w_jgpSize * 1024 * 1024;
+  var jpgSize = jpgSize || 5;
+  var w_jgpSize = w_jpgSize || 1;
+  jpgSize = +jpgSize * 1024 * 1024;
+  w_jpgSize = +w_jgpSize * 1024 * 1024;
 
   var openOptsEps = new EPSOpenOptions();
   openOptsEps.antialias = true;
@@ -94,7 +94,7 @@ function _makeJpgFromPs(jpgSize, w_jpgSize) {
 
    jpgFileSize = __saveJpg(jpgFilePath, jpgQuality);
 
-   for (var i = 0; i <= 6; i++) {
+   for (var i = 0; i <= 5; i++) {
 
     if (jpgFileSize > maxFileSize && new File(jpgFilePath).exists) {
      new File(jpgFilePath).remove();
