@@ -36,15 +36,25 @@
   <div>
    <button class="btn" id="make_jpg_from_ps">Сгенерировать джипеги</button>
   </div>
+
   <div class="number">
-   <label for="jpg_size">Размер общего</label>
-   <input class="number__input" id="jpg_size" type="number" max="10" min="0.5" step="0.5" value="5">
-   <label for="jpg_size">Мб</label>
+   <label for="jpg_quality">Качество общего</label>
+   <input class="number__input" id="jpg_quality" type="number" max="12" min="1" step="1" value="10">
   </div>
   <div class="number">
-   <label for="w_jpg_size">Размер белого</label>
-   <input class="number__input" id="w_jpg_size" type="number" max="10" min="0.5" step="0.5" value="1">
-   <label for="w_jpg_size">Мб</label>
+   <label for="jpg_res">Разрешение общего</label>
+   <input class="number__input" id="jpg_res" type="number" max="600" min="28" step="1" value="250">
+   <label for="jpg_res">ppi</label>
+  </div>
+  <div class="number">
+   <label for="w_jpg_quality">Качество белого</label>
+   <input class="number__input" id="w_jpg_quality" type="number" max="12" min="1" step="1" value="6">
+  </div>
+
+  <div class="number">
+   <label for="w_jpg_res">Разрешение белого</label>
+   <input class="number__input" id="w_jpg_res" type="number" max="600" min="28" step="1" value="150">
+   <label for="w_jpg_res">ppi</label>
   </div>
   <!--  <div class="page__line-sep"></div>-->
  </fieldset>

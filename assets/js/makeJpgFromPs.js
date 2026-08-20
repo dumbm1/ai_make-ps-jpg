@@ -1,159 +1,115 @@
-const _printerList = ['Printer Adobe PDF', 'Printer Adobe PostScript File'];
-const _printPresetList = ['mount-preview', 'sep'];
-const _ppdFile = 'PPDFile Adobe PDF';
+'use strict';
 
-makeJpgFromPs();
+try {
+ mkJpg();
+} catch (e) {
+ alert(e);
+}
 
-function makeJpgFromPs() {
+function mkJpg() {
  const makeJpgFromPs_btn = document.getElementById("make_jpg_from_ps");
- const jpgSize = document.getElementById("jpg_size").value;
- const w_jpgSize = document.getElementById("w_jpg_size").value;
+ makeJpgFromPs_btn.addEventListener("click", () => {
 
- makeJpgFromPs_btn.addEventListener("click", e => {
+  const jpgRes = document.getElementById("jpg_res").value;
+  const w_jpgRes = document.getElementById("w_jpg_res").value;
+  const jpgQuality = document.getElementById("jpg_quality").value;
+  const w_jpgQuality = document.getElementById("w_jpg_quality").value;
 
-  csInterface.evalScript(_makeJpgFromPs.toString() + ';_makeJpgFromPs("' + jpgSize + '","' + w_jpgSize + '")', function (result) {
-
-  });
+  csInterface.evalScript(
+   ai_jsx_mkJpg.toString() +
+   ';ai_jsx_mkJpg("' + jpgRes + '","' + w_jpgRes + '","' + jpgQuality + '","' + w_jpgQuality + '")',
+   function (result) {
+   });
  });
 }
 
-function _makeJpgFromPs(jpgSize, w_jpgSize) {
+function ai_jsx_mkJpg(jpgRes, w_jpgRes, jpgQuality, w_jpgQuality) {
+ if (!documents.length) throw new Error("ai_jsx_mkJgp: Блять, нет документа!");
 
  var ad = activeDocument;
+ if (!new File(ad.fullName).exists) throw new Error('ai_jsx_mkJpg: Блять, документ не сохранен на диске!');
+
  var filePath = ad.path;
  var fileName = (ad.name).slice(0, -3);
- var jpgSize = jpgSize || 5;
- var w_jpgSize = w_jpgSize || 1;
 
  var bt = new BridgeTalk();
  bt.target = __getLastOrRunningTarget('photoshop');
- bt.body = __makeJpgFromPs.toString() + ';__makeJpgFromPs("' + filePath + '","' + fileName + '", "' + jpgSize + '","' + w_jpgSize + '")';
+ bt.body = psd_jsx_mkJpg.toString() +
+  ';psd_jsx_mkJpg("' +
+  filePath + '","' + fileName + '", "' + jpgRes + '","' + w_jpgRes + '", "' + jpgQuality + '","' + w_jpgQuality + '")';
  bt.send();
 
- function __makeJpgFromPs(filePath, fileName, jpgSize, w_jpgSize) {
-  var baseMountPath, jpgFilePath, jpgFilePath_w, psFilePath, psFilePath_w;
+ function psd_jsx_mkJpg(filePath, fileName, jpgRes, w_jpgRes, jpgQuality, w_jpgQuality) {
+
+  var baseMountPath, jpgFilePath, w_jpgFilePath, psFilePath, w_psFilePath;
   var isOut = fileName.match(/^out_/);
-  var result = '', res1 = '', res2 = '';
+  var result, res1, res2;
 
   if (isOut) {
    fileName = fileName.slice(4);
-   // alert('isOut, fileName: ' + fileName);
-   try {
-    baseMountPath = '/C/!_mount/';
-    jpgFilePath = baseMountPath + '/' + fileName + '/mount_' + fileName + '.jpg';
-    jpgFilePath_w = baseMountPath + '/' + fileName + '/w_mount_' + fileName + '.jpg';
-    psFilePath = baseMountPath + '/' + fileName + '/mount_' + fileName + '.ps';
-    psFilePath_w = baseMountPath + '/' + fileName + '/w_mount_' + fileName + '.ps';
-    // alert('isOut==true, fileName is: ' + fileName + ', ps-file exists: ' + new File(psFilePath).exists);
-   } catch (e) {
-    alert('isOut error: ' + e);
-   }
-
+   baseMountPath = '/C/!_mount/';
+   jpgFilePath = baseMountPath + '/' + fileName + '/mount_' + fileName + '.jpg';
+   w_jpgFilePath = baseMountPath + '/' + fileName + '/w_mount_' + fileName + '.jpg';
+   psFilePath = baseMountPath + '/' + fileName + '/mount_' + fileName + '.ps';
+   w_psFilePath = baseMountPath + '/' + fileName + '/w_mount_' + fileName + '.ps';
   } else if (isOut === null) {
-   try {
-    jpgFilePath = filePath + '/jpg/' + fileName + '.jpg';
-    jpgFilePath_w = filePath + '/jpg/' + fileName + '_w' + '.jpg';
-    psFilePath = filePath + '/jpg/' + fileName + '.ps';
-    psFilePath_w = filePath + '/jpg/' + fileName + '_w' + '.ps';
-   } catch (e) {
-    alert('isOut===null error: ' + e);
-   }
+   jpgFilePath = filePath + '/jpg/' + fileName + '.jpg';
+   w_jpgFilePath = filePath + '/jpg/' + fileName + '_w' + '.jpg';
+   psFilePath = filePath + '/jpg/' + fileName + '.ps';
+   w_psFilePath = filePath + '/jpg/' + fileName + '_w' + '.ps';
   }
-
-  var jpgQuality = 12;
-  var psFile = new File(psFilePath);
-  var psFile_w = new File(psFilePath_w);
-  var jpgFileSize;
-  var jpgSize = jpgSize || 5;
-  var w_jgpSize = w_jpgSize || 1;
-  jpgSize = +jpgSize * 1024 * 1024;
-  w_jpgSize = +w_jgpSize * 1024 * 1024;
-
-  var openOptsEps = new EPSOpenOptions();
-  openOptsEps.antialias = true;
-  openOptsEps.constrainProportions = true;
-  openOptsEps.resolution = 300;
-  openOptsEps.mode = OpenDocumentMode.RGB;
 
   try {
-   res1 = 'jpg ' + _saveJpg(psFile, jpgFilePath, jpgSize) + '. ';
+   res1 = 'Общий: ' + _saveJpg(psFilePath, jpgFilePath, jpgRes, jpgQuality) + '. ';
   } catch (e) {
-   res1 = '';
+   res1 = 'Общего вида нет. ';
   }
   try {
-   res2 = 'w_jpg ' + _saveJpg(psFile_w, jpgFilePath_w, w_jpgSize);
+   res2 = 'Белая форма: ' + _saveJpg(w_psFilePath, w_jpgFilePath, w_jpgRes, w_jpgQuality);
   } catch (e) {
-   res2 = '';
+   res2 = 'Белой формы нет.';
   }
-  result = res1 + res2;
+  /*
+    result = res1 + res2;
+  */
 
-  function _saveJpg(psFile, jpgFilePath, maxFileSize) {
-   if (!psFile.exists) throw new Error('psFile does not exist');
+  /*
+  var bt2 = new BridgeTalk();
+    bt2.target = 'illustrator';
+    bt2.body = 'function f() {alert("' + result + '");} f();';
+    bt2.send();
+    */
+
+  function _saveJpg(psFilePath, jpgFilePath, jpgRes, jpgQuality) {
+   var psFile = new File(psFilePath);
+
+   if (!psFile.exists) throw new Error('psd_jsx_mkJpg >> _saveJpg: psFile does not exist');
+
+   var openOptsEps = new EPSOpenOptions();
+   openOptsEps.antialias = true;
+   openOptsEps.constrainProportions = true;
+   openOptsEps.resolution = +jpgRes;
+   openOptsEps.mode = OpenDocumentMode.RGB;
 
    app.open(psFile, openOptsEps);
 
-   jpgFileSize = __saveJpg(jpgFilePath, jpgQuality);
-
-   for (var i = 0; i <= 5; i++) {
-
-    if (jpgFileSize > maxFileSize && new File(jpgFilePath).exists) {
-     new File(jpgFilePath).remove();
-     jpgQuality -= 2;
-     jpgFileSize = __saveJpg(jpgFilePath, jpgQuality);
-    } else {
-     break;
-    }
-   }
+   var jpgFile = __f(jpgFilePath, jpgQuality);
+   var jpgFileSize = Math.round(jpgFile.length / 1024);
 
    app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
-   psFile.remove();
-   return '(' + formatTime(new Date()) + '): ' + Math.round(new File(jpgFilePath).length / 1024) + ' Mb';
-  }
+   var isRm = confirm('Размер jpg ' + jpgFile.name + ' — ' + jpgFileSize + ' Кб. Удалить .ps-файл?');
+   if (isRm) psFile.remove();
+   return Math.round(new File(jpgFilePath).length / 1024) + ' Кб';
 
-  var bt2 = new BridgeTalk();
-  bt2.target = 'illustrator';
-  bt2.body = 'function f() {alert("' + result + '");} f();';
-  bt2.send();
-
-  function __saveJpg(jpgFilePath, jpgQuality) {
-   var jpgFile = new File(jpgFilePath);
-
-   var saveOptsJpg = new JPEGSaveOptions();
-   saveOptsJpg.embedColorProfile = true;
-   saveOptsJpg.matte = MatteType.NONE;
-   saveOptsJpg.quality = jpgQuality;
-
-   app.activeDocument.saveAs(jpgFile, saveOptsJpg, true, Extension.LOWERCASE);
-   jpgFileSize = jpgFile.length;
-   return jpgFileSize;
-  }
-
-  function formatDate(date) {
-   var d = date;
-   // форматировать дату, с учетом того, что месяцы начинаются с 0
-   d = [
-    '0' + d.getDate(),
-    '0' + (d.getMonth() + 1),
-    '' + d.getFullYear(),
-    '0' + d.getHours(),
-    '0' + d.getMinutes()
-   ];
-   for (var i = 0; i < d.length; i++) {
-    d[i] = d[i].slice(-2);
+   function __f(jpgFilePath, jpgQuality) {
+    var jpgFile = new File(jpgFilePath);
+    var saveOptsJpg = new JPEGSaveOptions();
+    saveOptsJpg.embedColorProfile = true;
+    saveOptsJpg.matte = MatteType.NONE;
+    saveOptsJpg.quality = +jpgQuality;
+    app.activeDocument.saveAs(jpgFile, saveOptsJpg, true, Extension.LOWERCASE);
+    return jpgFile;
    }
-   return d.slice(0, 3).join('.') + ' ' + d.slice(3).join(':');
-  }
-
-  function formatTime(date) {
-   var d = date;
-   d = [
-    '0' + d.getHours(),
-    '0' + d.getMinutes()
-   ];
-   for (var i = 0; i < d.length; i++) {
-    d[i] = d[i].slice(-2);
-   }
-   return d.slice(0, 2).join(':');
   }
  }
 
