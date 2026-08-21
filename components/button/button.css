@@ -5,7 +5,7 @@
  /*height: 2rem;*/
  cursor: pointer;
  transition: transform 200ms ease-in-out;
- border: 2px solid var(--border-primary);
+ border: 1px solid var(--border-primary);
  border-radius: .5rem;
  padding: .5rem 1rem;
  box-sizing: border-box;

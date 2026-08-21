@@ -37,25 +37,66 @@
    <button class="btn" id="make_jpg_from_ps">Сгенерировать джипеги</button>
   </div>
 
-  <div class="number">
-   <label for="jpg_quality">Качество общего</label>
-   <input class="number__input" id="jpg_quality" type="number" max="12" min="1" step="1" value="10">
-  </div>
-  <div class="number">
-   <label for="jpg_res">Разрешение общего</label>
-   <input class="number__input" id="jpg_res" type="number" max="600" min="28" step="1" value="250">
-   <label for="jpg_res">ppi</label>
-  </div>
-  <div class="number">
-   <label for="w_jpg_quality">Качество белого</label>
-   <input class="number__input" id="w_jpg_quality" type="number" max="12" min="1" step="1" value="6">
+  <div class="accordion">
+   <details class="accordion__details">
+    <summary class="accordion__summary">Параметры джипегов</summary>
+    <fieldset class="page__section">
+     <legend>Общий вид</legend>
+     <div class="slider">
+      <label for="jpg_quality">Качество</label>
+      <input class="slider__elem" id="jpg_quality" type="range" max="12" min="1" step="1" value="10">
+      <output class="slider__output" for="jpg_quality" id="jpg_quality_output">10</output>
+     </div>
+     <div class="">
+      <label for="jpg_res">Разрешение</label>
+      <select class="" id="jpg_res">
+       <option>36</option>
+       <option>72</option>
+       <option>150</option>
+       <option selected>200</option>
+       <option>250</option>
+       <option>300</option>
+       <option>350</option>
+       <option>400</option>
+       <option>450</option>
+       <option>500</option>
+       <option>550</option>
+       <option>600</option>
+      </select>
+      <label for="jpg_res">ppi</label>
+     </div>
+    </fieldset>
+
+    <fieldset class="page__section">
+     <legend>Белая форма</legend>
+     <div class="slider">
+      <label for="w_jpg_quality">Качество</label>
+      <input class="slider__elem" id="w_jpg_quality" type="range" max="12" min="1" step="1" value="6">
+      <output class="slider__output" for="w_jpg_quality">6</output>
+     </div>
+
+     <div class="">
+      <label for="w_jpg_res">Разрешение</label>
+      <select class="" id="w_jpg_res">
+       <option>36</option>
+       <option>72</option>
+       <option selected>150</option>
+       <option>200</option>
+       <option>250</option>
+       <option>300</option>
+       <option>350</option>
+       <option>400</option>
+       <option>450</option>
+       <option>500</option>
+       <option>550</option>
+       <option>600</option>
+      </select>
+      <label for="w_jpg_res">ppi</label>
+     </div>
+    </fieldset>
+   </details>
   </div>
 
-  <div class="number">
-   <label for="w_jpg_res">Разрешение белого</label>
-   <input class="number__input" id="w_jpg_res" type="number" max="600" min="28" step="1" value="150">
-   <label for="w_jpg_res">ppi</label>
-  </div>
   <!--  <div class="page__line-sep"></div>-->
  </fieldset>
 

@@ -1,21 +1,24 @@
 .accordion {
+ background: var(--border-secondary);
+ border-radius: .5rem;
 }
 
 .accordion__details {
 }
 
 .accordion__summary {
+ padding: .5rem 0;
 }
 
 .accordion__content {
 }
 
 /*.accordion:active, .accordion__summary:active, accordion__details:active,*/
-.accordion:focus, .accordion__summary:focus, accordion__details:focus {
+.accordion:focus, .accordion__summary:focus, .accordion__details:focus {
  outline: none;
 }
 
-.accordion__summary:hover{
+.accordion__summary:hover {
  background: var(--button-hover);
  cursor: pointer;
 }

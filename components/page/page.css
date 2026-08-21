@@ -1,19 +1,26 @@
 .page {
  color: var(--color-primary);
  background-color: var(--bg-primary);
- padding: .5rem;
+ /*padding: .5rem;*/
  position: relative;
  display: grid;
  gap: 1rem;
 }
 
 .page__section {
+ display: flex;
+ flex-direction: column;
+ gap: .5rem;
  box-sizing: border-box;
  /*padding: 0 .3rem;*/
  position: relative;
  padding: .5rem;
  border: 1px solid var(--border-secondary);
  border-radius: .5rem;
+}
+
+.page__section legend {
+ padding: .5rem;
 }
 
 .page__line-sep {
