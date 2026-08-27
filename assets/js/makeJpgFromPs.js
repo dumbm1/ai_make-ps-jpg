@@ -97,8 +97,9 @@ function ai_jsx_mkJpg(jpgRes, w_jpgRes, jpgQuality, w_jpgQuality) {
    var jpgFileSize = Math.round(jpgFile.length / 1024);
 
    app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
-   var isRm = confirm('Размер jpg ' + jpgFile.name + ' — ' + jpgFileSize + ' Кб. Удалить .ps-файл?');
-   if (isRm) psFile.remove();
+  /* var isRm = confirm('Размер jpg ' + jpgFile.name + ' — ' + jpgFileSize + ' Кб. Удалить .ps-файл?');
+   if (isRm) psFile.remove();*/
+   psFile.remove();
    return Math.round(new File(jpgFilePath).length / 1024) + ' Кб';
 
    function __f(jpgFilePath, jpgQuality) {
