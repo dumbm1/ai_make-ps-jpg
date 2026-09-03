@@ -41,6 +41,7 @@ makeSepBtn.addEventListener("click", (e) => {
  * */
 function jsx_helpForSep() {
  executeMenuCommand('deselectall');
+
  var ad = activeDocument;
  ad.artboards.setActiveArtboardIndex(0);
  var lays = ad.layers;
@@ -54,12 +55,15 @@ function jsx_helpForSep() {
  newLays = _getNewLays(originLaysNames);
 
  _hideOriginLays(lays, newLays);
- _rasterizeNewLays(newLays);
 
- executeMenuCommand('Print');
+ _moveNewLays(newLays, ad);
 
- _rmNewLays(newLays);
- _setLaysVisible(lays, laysVisible);
+ /* _rasterizeNewLays(newLays);
+
+  executeMenuCommand('Print');
+
+  _rmNewLays(newLays);
+  _setLaysVisible(lays, laysVisible);*/
 
  /**
   * LIB
@@ -86,6 +90,34 @@ function jsx_helpForSep() {
   }
  }
 
+ function _moveNewLays(newLays, ad) {
+  var tmpLay = ad.layers.add();
+  tmpLay.name = '__tmpLayForSep__';
+
+  for (var i = 0; i < newLays.length; i++) {
+   var lay = newLays[i];
+   if (lay.locked == true) lay.locked = false;
+   lay.move(tmpLay, ElementPlacement.PLACEATEND);
+  }
+
+  executeMenuCommand('unlockAll');
+  executeMenuCommand('clearguide');
+  executeMenuCommand('selectall');
+
+  /*
+   var opts = new RasterizeOptions();
+   opts.resolution = +prompt('Введите разрешение от 72 до 2400', '150');
+   opts.transparency = true;
+
+   for (var i = 0; i < newLays.length; i++) {
+   var lay = newLays[i];
+   executeMenuCommand('deselectall');
+   lay.hasSelectedArtwork = true;
+   executeMenuCommand('group');
+   ad.rasterize(selection[0], undefined, opts);
+   }*/
+ }
+
  function _rasterizeNewLays(newLays) {
 
   for (var i = 0; i < newLays.length; i++) {
@@ -97,7 +129,7 @@ function jsx_helpForSep() {
   executeMenuCommand('deselectall');
 
   var opts = new RasterizeOptions();
-  opts.resolution = +prompt('Введите разрешение от 72 до 2400', '200');
+  opts.resolution = +prompt('Введите разрешение от 72 до 2400', '150');
   opts.transparency = true;
 
   for (var i = 0; i < newLays.length; i++) {
